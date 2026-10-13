@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package auth;
+
+service UsersService {
+  rpc CreateUser (CreateUserDto) returns (User) {}
+  rpc FindAllUsers () returns (Users) {}
+  rpc FindOneUser (FindOneUserDto) returns (User) {}
+  
+}
+
+message FindOneUserDto {
+  string id = 1;
+}
+
+message Empty {};
+
+message Users {
+  repeated User users = 1;
+}
+
+message CreateUserDto {
+  string username = 1;
+  string password = 2;
+  int32 age = 3;
+}
+
+message User {
+  string id = 1;
+  string username = 2;
+  string password = 3;
+  int32 age = 4;
+  bool subscribed = 5;
+  SocialMedia socialMedia = 6;
+}
+
+message SocialMedia {
+  optional string twitterUri = 1;
+  optional string facebookUri = 2;
+}
